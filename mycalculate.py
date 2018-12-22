@@ -10,9 +10,8 @@ path = '/home/shiyanlou/math.txt'
 
 def judge(result):
     global win
-    win = 0
     try:
-        answer = int(input('Please input result : '))
+        answer = int(input())
     except ValueError:  
         print('Input can not None')
         exit()
@@ -33,32 +32,28 @@ def clt(i, cs):
     a  = ['0','+','-','*','/']
     while(i):
         oprt = randint(1, cs) # oprt : make a mod 1:+ 2:- 3:* 4:/
+        x = randint(0, 100)
+        y = randint(0, 100) 
         if oprt == 1:
-            x = randint(0, 100)
-            y = randint(0, 100) 
-            print(x, a[oprt], y, '=')
+            print(x, a[oprt], y, '=', end=' ')
             result = x + y
             judge(result)
         elif oprt == 2:
-            x = randint(0, 100)
-            y = randint(0, 100) 
-            print(x, '-', y, '=')
+            print(x, '-', y, '=', end=' ')
             result = x - y
             judge(result)
         elif oprt == 3:
             x = randint(0, 20)
             y = randint(0, 20) 
-            print(x, '*', y, '=')
+            print(x, '*', y, '=', end=' ')
             result = x * y
             judge(result)
         elif oprt == 4:
-            x = randint(0, 100)
-            y = randint(0, 100) 
-            print(x, '/', y, '=')
+            print(x, '/', y, '=', end=' ')
             result = x // y
             judge(result)
         i -= 1
-
+win = 0
 print('-*-'*10)
 print(' '*8 + '1.primary')
 print(' '*8 + '2.middle')
@@ -76,4 +71,4 @@ elif cs == 2:
 else:
     print('Level is error')
     exit()
-print('There are {} questions, your currect answer {}, wrong answer {}.\nAccuracy rate: {}%'.format(i, win, i-win, win/i*100))
+print('There are {} questions, your currect answer {}, wrong answer {}.\nAccuracy rate: {:.2f}%'.format(i, win, i-win, win/i*100))
