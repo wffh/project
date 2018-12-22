@@ -6,7 +6,7 @@
 #! /usr/bin/env python3 
 from random import randint
 
-path = '/home/shiyanlou/math.txt'
+path = '/home/kali/project/math.txt'
 
 def judge(result):
     global win
@@ -20,7 +20,7 @@ def judge(result):
         win += 1
     else:
         print('Error!')
-        with open(path, 'w') as w:
+        with open(path, 'a') as w:
             s = str(x) + a[oprt] + str(y) +  '=' + str(result) + '   '
             w.write(s)
 
