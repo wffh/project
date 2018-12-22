@@ -7,22 +7,30 @@
 from random import randint
 
 path = '/home/shiyanlou/math.txt'
+
 def judge(result):
+    global win
+    win = 0
     try:
-        answer = int(input('Please input result'))
+        answer = int(input('Please input result : '))
     except ValueError:  
         print('Input can not None')
         exit()
     if result == answer:
         print('Good!You are right!')
+        win += 1
     else:
         print('Error!')
-        w = open(path, 'w')
-        w.write(x,a[oprt],y,'=',result)
+        with open(path, 'w') as w:
+            s = str(x) + a[oprt] + str(y) +  '=' + str(result) + '   '
+            w.write(s)
 
 
 def clt(i, cs):
-    a = ['0','+','-','*','/']
+    global a
+    global x, y
+    global oprt    
+    a  = ['0','+','-','*','/']
     while(i):
         oprt = randint(1, cs) # oprt : make a mod 1:+ 2:- 3:* 4:/
         if oprt == 1:
@@ -51,14 +59,13 @@ def clt(i, cs):
             judge(result)
         i -= 1
 
-
 print('-*-'*10)
 print(' '*8 + '1.primary')
 print(' '*8 + '2.middle')
 print('-*-'*10)
 try:
-    cs = int(input('Please input which level you want to calculate'))
-    i = int(input('How many questions you want to solve'))
+    cs = int(input('Please input the level you want to calculate: '))
+    i = int(input('How many questions you want to solve: '))
 except ValueError:
     print('Your level or the number of questions is wrong!!!')
     exit()
@@ -69,3 +76,4 @@ elif cs == 2:
 else:
     print('Level is error')
     exit()
+print('There are {} questions, your currect answer {}, wrong answer {}.\nAccuracy rate: {}%'.format(i, win, i-win, win/i*100))
