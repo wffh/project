@@ -13,7 +13,7 @@ def judge(result):
     try:
         answer = int(input())
     except ValueError:  
-        print('Input can not None')
+        print('Input Error')
         exit()
     if result == answer:
         print('Good!You are right!')
@@ -49,9 +49,24 @@ def clt(i, cs):
             result = x * y
             judge(result)
         elif oprt == 4:
+            global win
             print(x, '/', y, '=', end=' ')
-            result = x // y
-            judge(result)
+            result = x / y
+            result = round(result, 1)
+            try:
+                answer = float(input())
+            except ValueError:  
+                print('Input Error')
+                exit()
+            if result == answer:
+                print('Good!You are right!')
+                win += 1
+            else:
+                print('Error!')
+                with open(path, 'a') as w:
+                    s = str(x) + a[oprt] + str(y) +  '=' + str(result) + '   '
+                    w.write(s)
+
         i -= 1
 win = 0
 print('-*-'*10)
